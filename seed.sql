@@ -22,23 +22,14 @@ CREATE TABLE `data` (
   `return_address_state` VARCHAR(256),
   `return_address_zip` VARCHAR(256),
   
-  `flat` VARCHAR(256),	
-  `padded_bubble_mailer` VARCHAR(256),	
-  `parcel` VARCHAR(256),	
-  `flat_rate_envelope` VARCHAR(256),	
-  `flat_rate_legal_envelope` VARCHAR(256),	
-  `flat_rate_padded_envelope` VARCHAR(256),	
-  `small_flat_rate_box` VARCHAR(256),	
-  `medium_flat_rate_box` VARCHAR(256),	
-  `large_flat_rate_box` VARCHAR(256),	
-  `regional_rate_box_a` VARCHAR(256),
-  `regional_rate_box_b` VARCHAR(256),
+  `flat_rate` VARCHAR(256),	
+  `services` VARCHAR(256),	
   
   `weight_lbs` VARCHAR(256),	
   `weight_oz` VARCHAR(256),	
   
   `dimensions` VARCHAR(256),	
   
-  `created` DATETIME NOT NULL,
-  `modified` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+
 ) CHARSET=utf8;          

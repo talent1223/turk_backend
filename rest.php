@@ -30,43 +30,36 @@ if ($uri = "data" && $method = "POST"){
 
     $connection = db_connect();
 
-    print_r($_POST["ship_from_name"]);
+    print_r(isset($_POST['ship_from_city']) ? $_POST['ship_from_city'] : "");
+
+    $ship_from_city = isset($_POST['ship_from_city']) ? $_POST['ship_from_city'] : "";
     
-    $sql = "INSERT INTO data (ship_from_name, ship_from_address1, ship_from_address2, ship_from_city, ship_from_state, ship_from_zip, ship_to_name, ship_to_address1, ship_to_address2, ship_to_city, ship_to_state, ship_to_zip, return_address_name, return_address_address1, return_address_address2, return_address_city, return_address_state, return_address_zip, flat, padded_bubble_mailer, parcel, flat_rate_envelope, flat_rate_legal_envelope, flat_rate_padded_envelope, small_flat_rate_box, medium_flat_rate_box, large_flat_rate_box, regional_rate_box_a, regional_rate_box_b, weight_lbs, weight_oz, dimensions) VALUES ('" . $_POST['ship_from_name']  
-    . "','" . $_POST['ship_from_address1'] 
-    . "','" . $_POST['ship_from_address2'] 
-    . "','" . $_POST['ship_from_city'] 
-    . "','" . $_POST['ship_from_state'] 
-    . "','" . $_POST['ship_from_zip'] 
-    . "','" . $_POST['ship_to_name'] 
-    . "','" . $_POST['ship_to_address1'] 
-    . "','" . $_POST['ship_to_address2'] 
-    . "','" . $_POST['ship_to_city'] 
-    . "','" . $_POST['ship_to_state'] 
-    . "','" . $_POST['ship_to_zip'] 
-    . "','" . $_POST['return_address_name'] 
-    . "','" . $_POST['return_address_address1'] 
-    . "','" . $_POST['return_address_address2'] 
-    . "','" . $_POST['return_address_city'] 
-    . "','" . $_POST['return_address_state'] 
-    . "','" . $_POST['return_address_zip'] 
-    . "','" . $_POST['flat'] 
-    . "','" . $_POST['padded_bubble_mailer'] 
-    . "','" . $_POST['parcel'] 
-    . "','" . $_POST['flat_rate_envelope'] 
-    . "','" . $_POST['flat_rate_legal_envelope'] 
-    . "','" . $_POST['flat_rate_padded_envelope'] 
-    . "','" . $_POST['small_flat_rate_box'] 
-    . "','" . $_POST['medium_flat_rate_box'] 
-    . "','" . $_POST['large_flat_rate_box'] 
-    . "','" . $_POST['regional_rate_box_a'] 
-    . "','" . $_POST['regional_rate_box_b'] 
-    . "','" . $_POST['weight_lbs'] 
-    . "','" . $_POST['weight_oz'] 
-    . "','" . $_POST['dimensions'] 
+    $sql = "INSERT INTO data (ship_from_name, ship_from_address1, ship_from_address2, ship_from_city, ship_from_state, ship_from_zip, ship_to_name, ship_to_address1, ship_to_address2, ship_to_city, ship_to_state, ship_to_zip, return_address_name, return_address_address1, return_address_address2, return_address_city, return_address_state, return_address_zip, flat_rate, services, weight_lbs, weight_oz, dimensions) VALUES ('" . (isset($_POST['ship_from_name']) ? $_POST['ship_from_name'] : "")
+    . "','" . (isset($_POST['ship_from_address1']) ? $_POST['ship_from_address1'] : "")
+    . "','" . (isset($_POST['ship_from_address2']) ? $_POST['ship_from_address2'] : "")
+    . "','" . (isset($_POST['ship_from_city']) ? $_POST['ship_from_city'] : "")
+    . "','" . (isset($_POST['ship_from_state']) ? $_POST['ship_from_state'] : "") 
+    . "','" . (isset($_POST['ship_from_zip']) ? $_POST['ship_from_zip'] : "")
+    . "','" . (isset($_POST['ship_to_name']) ? $_POST['ship_to_name'] : "")
+    . "','" . (isset($_POST['ship_to_address1']) ? $_POST['ship_to_address1'] : "") 
+    . "','" . (isset($_POST['ship_to_address2']) ? $_POST['ship_to_address2'] : "")
+    . "','" . (isset($_POST['ship_to_city']) ? $_POST['ship_to_city'] : "")
+    . "','" . (isset($_POST['ship_to_state']) ? $_POST['ship_to_state'] : "")
+    . "','" . (isset($_POST['ship_to_zip']) ? $_POST['ship_to_zip'] : "")
+    . "','" . (isset($_POST['return_address_name']) ? $_POST['return_address_name'] : "")
+    . "','" . (isset($_POST['return_address_address1']) ? $_POST['return_address_address1'] : "")
+    . "','" . (isset($_POST['return_address_address2']) ? $_POST['return_address_address2'] : "")
+    . "','" . (isset($_POST['return_address_city']) ? $_POST['return_address_city'] : "")
+    . "','" . (isset($_POST['return_address_state']) ? $_POST['return_address_state'] : "")
+    . "','" . (isset($_POST['return_address_zip']) ? $_POST['return_address_zip'] : "")
+    . "','" . (isset($_POST['flat_rate']) ? $_POST['flat_rate'] : "")
+    . "','" . (isset($_POST['service']) ? $_POST['service'] : "")
+    . "','" . (isset($_POST['weight_lbs']) ? $_POST['weight_lbs'] : "")
+    . "','" . (isset($_POST['weight_oz']) ? $_POST['weight_oz'] : "")
+    . "','" . (isset($_POST['dimensions']) ? $_POST['dimensions'] : "")
     . "')";
 
-    print_r($sql);
+    echo $sql;
 
 }
     
