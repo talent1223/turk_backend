@@ -25,7 +25,7 @@ CREATE TABLE `data` (
   `flat_rate` VARCHAR(256),	
   `services` VARCHAR(256),	
   
-  `weight_lbs` VARCHAR(256),	
+  `weight_ibs` VARCHAR(256),	
   `weight_oz` VARCHAR(256),	
   
   `dimensions` VARCHAR(256),	
