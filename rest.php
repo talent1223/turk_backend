@@ -26,7 +26,7 @@ $uri = explode( '/', $uri );
 $uri = end($uri);
 $method = $_SERVER['REQUEST_METHOD'];
 
-if ($uri = "data" && $method = "POST"){
+if ($uri == "data" && $method == "POST"){
 
     $connection = db_connect();
 
@@ -62,6 +62,8 @@ if ($uri = "data" && $method = "POST"){
     . "','" . (isset($data['dimensions']) ? $data['dimensions'] : "")
     . "')";
     // echo $sql;
+
+    // print_r("123");
 
 }
     
