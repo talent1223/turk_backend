@@ -26,13 +26,9 @@ $uri = explode( '/', $uri );
 $uri = end($uri);
 $method = $_SERVER['REQUEST_METHOD'];
 
+$connection = db_connect();
+
 if ($uri == "data" && $method == "POST"){
-
-    $connection = db_connect();
-
-    // print_r(isset($data['ship_from_city']) ? $data['ship_from_city'] : "");
-
-    // $ship_from_city = isset($data['ship_from_city']) ? $data['ship_from_city'] : "";
 
     $params = file_get_contents('php://input');
     $data = json_decode($params, true);
@@ -61,23 +57,40 @@ if ($uri == "data" && $method == "POST"){
     . "','" . (isset($data['weight_oz']) ? $data['weight_oz'] : "")
     . "','" . (isset($data['dimensions']) ? $data['dimensions'] : "")
     . "')";
-    // echo $sql;
 
-    // print_r("123");
+    if ($connection->query($sql) === TRUE) {
+        $data = array('status' => true, 'message' => "Data saved successfully!");
+        echo json_encode($data);
+    } else {
+        $data = array('status' => false, 'message' => $connection->error.message);
+        echo json_encode($data);
+    }
 
 }
+
+if ($uri == "addresses" && $method == "GET"){
+
+    $sql = "SELECT * FROM addresses";
+    $result = $connection->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        $response = array();
+        while($row = $result->fetch_assoc()) {
+            $item = array("key" => $row["key"], "name" => $row["name"], "company_name" => $row["company_name"], "addr1" => $row["addr1"], "addr2" => $row["addr2"], "city" => $row["city"], "state" => $row["state"], "zip" => $row["zip"], "phone" => $row["phone"]);
+          
+            // array_push($response, $item);
+            $response[] = $item;
+        }
+
+        echo json_encode($response);
+    } else {
+        $response = array();
+        echo json_encode($response);
+    }
     
-if ($connection->query($sql) === TRUE) {
-    $data = array('status' => true, 'message' => "Data saved successfully!");
-
-    echo json_encode($data);
-
-  } else {
-    $data = array('status' => false, 'message' => $connection->error.message);
-
-    echo json_encode($data);
-  }
-  
-  $connection->close();
+}
+    
+$connection->close();
 
 ?>
